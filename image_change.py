@@ -1,7 +1,7 @@
 import array
 import cv2
 import os
-import numpy
+import numpy as np
 import codecs
 import glob
 
@@ -19,10 +19,10 @@ def convert_asm_to_images(sourcepath, destpath):
             Asm_Data_Size = os.path.getsize(sourcepath+file)
             width = int(Asm_Data_Size**0.5) # 크기 수정 
             byte_list = array.array("B") # 바이트 요소 담기 위한 바이트 배열 선언 
-            byte_list.frombytes(f.read()) # 바
+            byte_list.frombytes(f.read()) 
             f.close()
-            Write_Data = numpy.reshape(byte_list[:width * width], (width, width))
-            Write_Data = numpy.uint8(Write_Data)
+            Write_Data = np.reshape(byte_list[:width * width], (width, width)) # 2차원 배열 
+            Write_Data = np.uint8(Write_Data) # 픽셀 당 바이트 수 
             cv2.imwrite(destpath+file+'.png', Write_Data) # 이미지 파일 저장 
             print(str(count) +'번째 :' + file)
             count += 1
@@ -30,6 +30,6 @@ def convert_asm_to_images(sourcepath, destpath):
 
 # 시작 
 def convert_start():
-    sourcepath = r"D:\disasmbled\train__benign\\"
+    sourcepath = r"D:\disasmbled\train__malware\\"
     destpath = r"D:\image\\"
     convert_asm_to_images(sourcepath, destpath)
