@@ -18,6 +18,7 @@ def convert_asm_to_images(sourcepath, destpath):
             f = codecs.open(sourcepath+file, 'rb') # 읽기 모드로 오픈(바이너리 모드)
             Asm_Data_Size = os.path.getsize(sourcepath+file)
             width = int(Asm_Data_Size**0.5) # 크기 수정 
+            print(width)
             byte_list = array.array("B") # 바이트 요소 담기 위한 바이트 배열 선언 
             byte_list.frombytes(f.read()) 
             f.close()
