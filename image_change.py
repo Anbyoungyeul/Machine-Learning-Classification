@@ -32,7 +32,7 @@ def convert_asm_to_images(sourcepath, destpath):
 
 # 시작 
 def convert_start():
-    sourcepath = r"D:\disasmbled\train__malware\\"
-    destpath = r"D:\image\\"
+    sourcepath = r"D:\\disasmbled\\train__malware\\"
+    destpath = r"D:\\image\\"
     convert_asm_to_images(sourcepath, destpath)
     img_resize.image_resize()

@@ -20,7 +20,7 @@ def image_resize():
     for name in img_list:
         img=Image.open('%s%s' %(image_path, name))
         img_array = np.array(img) # 배열로 다시
-        img_resize = cv2.resize(img_array, (255,255), interpolation=cv2.INTER_AREA) #255x255로 수장
+        img_resize = cv2.resize(img_array, (28,28), interpolation=cv2.INTER_AREA) #255x255로 수장w정
         img=Image.fromarray(img_resize) 
         img.save('%s%s.png'%(resized_path,name)) # 이미지 저장 
 
