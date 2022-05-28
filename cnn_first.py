@@ -6,9 +6,7 @@ import matplotlib.pyplot as plt # 그래프 관련 라이브러리
 from keras.models import Sequential
 from keras.layers import Dense, Dropout, Flatten, Activation
 from keras.layers.convolutional import Conv2D, MaxPooling2D
-
-
-
+import tensorflow from
 
 def Performance_graph(history): # history 인자 파악 
     plt.figure(figsize=(12,4))#최초창크기
@@ -29,12 +27,29 @@ def Performance_graph(history): # history 인자 파악
     plt.show()
 
 def model_learning():
-    img_rows = 28
-    img_cols = 28 # 28*28 사이즈 
+    img_height = 28
+    img_width = 28 # 28*28 사이즈
+    data_dir = "D:\\image\\"
+    batch_size = 120
 
-    (x_train, y_train), (x_test, y_test) = #읽을데이타 라벨링 작업 추가 이거 찿아봤는데 이해를 못함 이거만 어떻게 하면 돌릴 수 있느데  이 ㅣ씨발거
-    img_cols, img_rows = x_train.shape[1: 28] #ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅆㅇㅈ 
 
+    data_load = tf.keras.processing.image_dataset_from_directory(
+        data_dir,
+        validation_split=0.2,
+        subset="training",
+        seed=123,
+        image_size=(img_height, img_width),
+        batch_size=batch_size
+    )
+   # (x_train, y_train), (x_test, y_test) = Dataload.load_data()
+   # img_cols, img_rows = x_train.shape[1: 28] 
+
+   # trainFileList = os.listdir()
+   # testFileList = os.listdir() # 이렇게 할까요? 방식은 같아서  
+    
+    # x_train = x_train.reshape(x_train.shape[0], img_rows, img_cols, 1) # 1이 여기서 정상을 의미하나 시발 모르겠다
+    X_train, X_test, Y_train, Y_test = np.load('./img_data.npy') # 이런식으로 불러와야 할 듯ㅍ (이미지를 넘파이 배열로 바꾸면 x_train,x_test 이런식으로 불러올 수 있대)
+    # 직전에봤던 예제들, 케라스 데이터 셋에서 불러온 것들은 자동으로 넘파이 배열로 변환된대  이해했ㅇ여 
 
     model = Sequential() #구성
     model.add(Conv2D(64,(3, 3), stride=(1,1), padding="same", activation="relu", input_shape=(255, 255, 1))) # 3*3 * 64
