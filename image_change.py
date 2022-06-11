@@ -24,7 +24,6 @@ def convert_asm_to_images(sourcepath, destpath):
             Write_Data = np.reshape(byte_list[:width * width], (width, width)) # 2차원 배열 
             Write_Data = np.uint8(Write_Data) # 픽셀 당 바이트 수 
             cv2.imwrite(destpath+file+'.png', Write_Data) # 이미지 파일 저장 
-            print(str(count) +'번째 :' + file)
             count += 1
     print('이미징 작업 완료')
 

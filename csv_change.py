@@ -20,7 +20,7 @@ def fileter_list(line):
             i+=1 
     return temp
 
-if __name__=="__main__":
+def csv_change():
     Dataset_asm =[]
     for file_num in glob.glob("D:\\disasmbled\\train__benign\\*.asm"):
         Dataset_asm.append(file_num)
@@ -42,3 +42,4 @@ if __name__=="__main__":
             write.writerow(column_names)
             write.writerows(final)
 
+csv_change()

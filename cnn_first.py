@@ -6,7 +6,6 @@ import matplotlib.pyplot as plt # 그래프 관련 라이브러리
 from keras.models import Sequential
 from keras.layers import Dense, Dropout, Flatten, Activation
 from keras.layers.convolutional import Conv2D, MaxPooling2D
-import tensorflow from
 
 def Performance_graph(history): # history 인자 파악 
     plt.figure(figsize=(12,4))#최초창크기
@@ -26,7 +25,7 @@ def Performance_graph(history): # history 인자 파악
     plt.legend(['train', 'validation'],  loc='lower right')
     plt.show()
 
-def model_learning():
+def model_learning(): # 이미지 
     img_height = 28
     img_width = 28 # 28*28 사이즈
     data_dir = "D:\\image\\"
@@ -41,29 +40,22 @@ def model_learning():
         image_size=(img_height, img_width),
         batch_size=batch_size
     )
-   # (x_train, y_train), (x_test, y_test) = Dataload.load_data()
-   # img_cols, img_rows = x_train.shape[1: 28] 
-
-   # trainFileList = os.listdir()
-   # testFileList = os.listdir() # 이렇게 할까요? 방식은 같아서  
     
-    # x_train = x_train.reshape(x_train.shape[0], img_rows, img_cols, 1) # 1이 여기서 정상을 의미하나 시발 모르겠다
-    X_train, X_test, Y_train, Y_test = np.load('./img_data.npy') # 이런식으로 불러와야 할 듯ㅍ (이미지를 넘파이 배열로 바꾸면 x_train,x_test 이런식으로 불러올 수 있대)
-    # 직전에봤던 예제들, 케라스 데이터 셋에서 불러온 것들은 자동으로 넘파이 배열로 변환된대  이해했ㅇ여 
+    X_train, X_test, Y_train, Y_test = np.load('./img_np.py') 
 
     model = Sequential() #구성
-    model.add(Conv2D(64,(3, 3), stride=(1,1), padding="same", activation="relu", input_shape=(255, 255, 1))) # 3*3 * 64
+    model.add(Conv2D(64,(3, 3), stride=(1,1), padding="same", activation="relu", input_shape=(28, 28, 1))) # 3*3 * 64
     model.add(MaxPooling2D(pool_size=(1,1)))
     model.add(Conv2D(64,(3, 3), stride=(1,1), padding="same",activation="relu"))
     model.add(MaxPooling2D(pool_size=(1,1)))
     model.add(Conv2D(64,(3, 3), stride=(1,1), padding="same", activation="relu"))
- # 그래프  x, yㅊ축 값 설정 model.add(MaxPooling2D(pool_size=(2,2)))
+ # 그래프  x, y축 값 설정 model.add(MaxPooling2D(pool_size=(2,2)))
     model.add(Dropout(0.5))#과적합 해결  학습할 떈 0.5, 테스트 1
-    model.add(Flatten()) #층추가
+    model.add(Flatten()) # 평탄화 층
     model.add(Dense(100)) # dense층 개수
-    model.add(Activation('sigmoid')) # 그래프 화면에 출력
+    model.add(Activation('sigmoid')) # 시그모이드 활성화 출력 함수 
     model.summary() #구성한 신경망 정보 출력  
-# 쓰는 방향ㅇ으로 ㄱ 
+
     model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuray']) # 학습 
     train_history = model.fit(x_train, y_train, batch_size=128, epochs=5, validation_data=(x_test, y_test)) #epochs 전체반복주기 #batch size
 

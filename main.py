@@ -1,4 +1,5 @@
 import image_change
+import img_np
 import cnn_first
 
 if __name__=="__main__":
