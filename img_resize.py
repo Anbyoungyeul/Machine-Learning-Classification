@@ -23,6 +23,4 @@ def image_resize():
         img_resize = cv2.resize(img_array, (28,28), interpolation=cv2.INTER_AREA) #255x255로 수장w정
         img=Image.fromarray(img_resize) 
         img.save('%s%s.png'%(resized_path,name)) # 이미지 저장 
-
-        print(name+'  '+str(index) + '/' +str(total_image))
         index = index+1
