@@ -10,9 +10,7 @@ import img_resize
 #데이터 이미지로 변환 
 def convert_asm_to_images(sourcepath, destpath):
     files = os.listdir(sourcepath) # 모든 파일과 디렉토리 리턴 
-    print('Sourcepath :', sourcepath)
-    print('Destination path :', destpath)
-    count =1
+    count = 1
     for file in files:
         if file.endswith(".asm"): # 확장자 검색 
             f = codecs.open(sourcepath+file, 'rb') # 읽기 모드로 오픈(바이너리 모드)
@@ -31,7 +29,10 @@ def convert_asm_to_images(sourcepath, destpath):
 
 # 시작 
 def convert_start():
-    sourcepath = r"D:\\disasmbled\\train__malware\\"
+    sourcepath_train_malware = r"D:\\disasmbled\\train__malware\\"
+    sourcepath_train_benign = r"D:\\disasmbled\\train__benign\\"
+    sourcepath_valid_malware = r"D:\\disasmbled\\valid__benign\\"
+    sourcepath_valid_malware = r"D:\\disasmbled\\valid__malware\\"
     destpath = r"D:\\image\\"
-    convert_asm_to_images(sourcepath, destpath)
+    convert_asm_to_images(sourcepath_train_malware, destpath)
     img_resize.image_resize()
