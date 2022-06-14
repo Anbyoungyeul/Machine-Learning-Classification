@@ -9,8 +9,12 @@ def image_to_numpy_array():
     Destination_path = 'C:\\Users\\SCHCsRC\\Desktop\\병열\\Python\Machine-Learning-Classification\\numpy_array\\'
     file_list = os.listdir(path_dir)
 
-    for png in file_list:
-        image = Image.open(path_dir + png)
-        pixel = np.array(image)
-        png = png.split('.')[0]
-        np.save(Destination_path+png, pixel)
+    # np_list=[]
+    # for png in file_list:
+    #     image = Image.open(path_dir + png)
+    #     pixel = np.array(image)
+    #     png = png.split('.')[0]
+    # np.savez_compressed(Destination_path+'data', png)
+    pixel = np.array(file_list) # Numpy 배열 생성
+    print(pixel)
+    np.savez_compressed(Destination_path+'data', pixel) # 생성된 배열을 1개의 압축되지 않은 .npz 파일로 저장
